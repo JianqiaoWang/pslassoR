@@ -1,0 +1,54 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# pslassoR
+
+<!-- badges: start -->
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/JianqiaoWang/pslasso?branch=master&svg=true)](https://ci.appveyor.com/project/JianqiaoWang/pslasso)
+<!-- badges: end -->
+
+The goal of pslassoR is to repeat the simulation results from the paper \textbf{Precision Lasso: accounting for correlations and linear dependencies in high-dimensional genomic data.}. It's published on \textit{Bioinformatics} in 2018. \url{https://www.ncbi.nlm.nih.gov/pubmed/30184048}
+
+## Installation
+
+You can install the released version of pslassoR from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("pslassoR")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(pslassoR)
+## basic example code
+```
+
+What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+
+```{r cars}
+summary(cars)
+```
+
+You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
+
+You can also embed plots, for example:
+
+```{r pressure, echo = FALSE}
+plot(pressure)
+```
+
+In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!

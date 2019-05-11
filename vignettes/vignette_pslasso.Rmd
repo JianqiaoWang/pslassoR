@@ -1,0 +1,97 @@
+---
+title: "vignette_pslasso"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{vignette_pslasso}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Import the package *pslassoR*
+
+```{r setup}
+library(pslassoR)
+```
+
+- Simulate a design matrix X with 100 rows and 300 column. Here we set the covariance matrix of X is exchangeble type. 
+
+- And a sparse coefficient vector is generated with K = 1. 
+
+- Generate a binary response vector y based on simulated X and $\beta$.
+
+```{r}
+
+set.seed(1)
+
+n = 100
+
+P = 300
+
+K = 1 # K measures sparsity
+
+beta = 5*beta.coef(K, P)
+
+X = pslassoR::Auto(0.2, P = P, N = n)
+
+expit = function(x){
+  return(exp(x)/(1 + exp(x)))
+}
+
+y = X %*% beta + rnorm(n)
+
+#y = rbinom(n,size = 1, prob = expit(X %*% beta))
+
+```
+
+Then we can fit this model with precision lasso method and get corresponding coefficients estimation.  
+
+```{r}
+
+T.Beta = (abs(beta) > 0)
+
+Beta = PSlasso(X, y, logistic = F)
+
+#Beta = glmreg(X,y,logistic = T, method = "lasso")
+
+plot(Beta)
+
+```
+
+To repeat the simulation results, you can run the codes 
+```{r, eval= F}
+
+type.vec = c("Auto", "block", "exch")
+rho.vec = c(0.2, 0.8)
+n.vec = c(100, 400)
+K.vec = c(5,20,40)
+result = multipleSimulation(type.vec = type.vec,
+                            rho.vec = rho.vec,
+                            n.vec = n.vec,
+                            K.vec = K.vec,
+                            mccores = 1)
+
+```
+
+For the results on the runing time for simulation, you can check
+
+```{r, eval = F}
+library(parallel)
+
+Test = function(K, node){
+  op = mclapply(1:K, Simulation, n =100, K = 20, rho = 0.2, type = "block", mc.cores=node)
+}
+
+
+result1 = microbenchmark(Simulation(1,n =100, K = 20, rho = 0.2, type = "block") , times = 100)
+
+library(microbenchmark)
+result2 =  microbenchmark(Test(K = 10,node = 1),Test(K = 10,node = 2), Test(K = 10,node = 4), times = 10)
+
+```
