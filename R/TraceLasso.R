@@ -26,6 +26,10 @@ TraceLasso = function(X,y,
 
   models <- reticulate::import_from_path("models", path = path)
 
+  if (nrow(X) != length(y)) {
+    stop("X and y is need to be same length ")
+  }
+
   model = models$PrecisionLasso()
 
   model$setLogisticFlag(logistic)

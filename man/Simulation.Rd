@@ -4,7 +4,7 @@
 \alias{Simulation}
 \title{Calculate the AUC for five variable selection method}
 \usage{
-Simulation(i, n, K, rho, type, path)
+Simulation(i, n, K, rho, type)
 }
 \arguments{
 \item{i}{random seed}

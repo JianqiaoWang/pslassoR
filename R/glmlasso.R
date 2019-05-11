@@ -29,6 +29,10 @@ glmreg = function(X, y, logistic = TRUE, method = c("lasso", "ridge", "elasticne
     dist = "gaussian"
   }
 
+  if (nrow(X) != length(y)) {
+    stop("X and y is need to be same length ")
+  }
+
   fit = glmnet::cv.glmnet(X, y, family = dist, alpha = alpha, nlambda = 100, intercept=F)
 
   small.lambda.betas <- coef(fit, s = "lambda.min")

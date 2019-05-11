@@ -15,7 +15,7 @@
 #' @export
 #'
 
-Simulation = function(i, n, K, rho, type, path){
+Simulation = function(i, n, K, rho, type){
 
   set.seed(i)
 

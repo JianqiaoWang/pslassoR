@@ -16,6 +16,8 @@
 
 Exch <- function(rho, P, N){
 
+  stopifnot(is.numeric(rho) & is.numeric(P) & is.numeric(N))
+
   SIGMA <-  matrix(rep(rho,P^2), P, P)
 
   diag(SIGMA) <- 1

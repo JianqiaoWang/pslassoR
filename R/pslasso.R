@@ -23,6 +23,11 @@ PSlasso <- function(X, y, path = "/Users/w/Desktop/UPenn\ Course/2019\ spring/co
  #    y = as.vector(y)
  #  }
 
+  if (nrow(X) != length(y)) {
+    stop("X and y is need to be same length ")
+  }
+
+
   reticulate::use_python("/usr/local/bin/python2", required = FALSE)
 
   models <- reticulate::import_from_path("models", path = path)

@@ -17,6 +17,8 @@
 
 Block <- function(rho, P, N, bandwidth){
 
+  stopifnot(is.numeric(rho) & is.numeric(P) & is.numeric(N) & is.numeric(bandwidth))
+
   A = matrix(rep(rho,(bandwidth)^2), bandwidth, bandwidth)
 
   diag(A) <- 1

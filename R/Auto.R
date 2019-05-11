@@ -16,6 +16,8 @@
 
 Auto <- function(rho, P, N){
 
+  stopifnot(is.numeric(rho) & is.numeric(P) & is.numeric(N))
+
   SIGMA <-  rho^abs(outer(1:P, 1:P, "-"))
 
   X <- mvtnorm::rmvnorm(N, mean = rep(0,P),sigma = SIGMA)
