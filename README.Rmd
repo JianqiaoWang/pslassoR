@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/JianqiaoWang/pslasso?branch=master&svg=true)](https://ci.appveyor.com/project/JianqiaoWang/pslasso)
+[![Travis build status](https://travis-ci.org/JianqiaoWang/pslassoR.svg?branch=master)](https://travis-ci.org/JianqiaoWang/pslassoR)
 <!-- badges: end -->
 
 The goal of pslassoR is to repeat the simulation results from the paper \textbf{Precision Lasso: accounting for correlations and linear dependencies in high-dimensional genomic data.}. It's published on \textit{Bioinformatics} in 2018. \url{https://www.ncbi.nlm.nih.gov/pubmed/30184048}
